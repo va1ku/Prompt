@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+/*import { createSelector } from 'reselect'*/
 
 export const getPost = (state) =>{
 	return state.profilePage.posts
