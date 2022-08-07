@@ -1,0 +1,22 @@
+import { NavLink } from "react-router-dom";
+import styles from "./Header.module.css";
+
+const Header = (props) =>{
+	return(
+		<header className={styles.header}>
+				{props.isAuth 
+				? <div className={styles.wrapper} >
+						<div className={styles.logo}></div>
+					<div className={styles.name}>{props.fullName}</div>
+					<button onClick={props.logout}>Logout</button>
+				</div>
+				: <div>
+					<NavLink to="/Login">Login</NavLink>
+				</div>
+				}
+				
+		</header>
+	)
+};
+
+export default Header;

@@ -1,0 +1,17 @@
+
+
+.sidebar{
+	grid-area: sidebar;
+	background-color: rgb(197, 130, 130);
+}
+
+.list{
+	margin: 20px 0 0 20px;
+}
+.list li{
+	padding: 0 0 10px 0;
+}
+
+.active{
+	color:black;
+}

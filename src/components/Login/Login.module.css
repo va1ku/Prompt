@@ -1,0 +1,46 @@
+
+.wrapper{
+	width: 100%;
+	height: 100%;
+	padding: 50px 0 0 0;
+}
+
+.loginWrapper{
+	width: 200px;
+	margin: 0 auto;
+}
+.loginWrapper h2{
+	margin: 0 0 10px 10px;
+	font-size: 20px;
+}
+
+h1{
+	text-align: center;
+	letter-spacing: 5px;
+	font-size: 30px;
+	margin: 0 10px 50px 10px
+}
+
+
+.loginInputWrapper{
+	width: 80%;
+	margin: 0 auto 20px;
+}
+
+.submitWrapper{
+	text-align: end;
+	margin: 50px 0;
+}
+
+
+.loginInput{
+	background-color: rgb(222, 232, 241);
+	margin: 0 auto;
+}
+.checkbox{
+	margin: 20px 0 0 10px;
+}
+
+.errors{
+	border: solid 1px #000;
+}

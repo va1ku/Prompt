@@ -1,0 +1,17 @@
+
+
+.header{
+	grid-area: header;
+	background-color: rgb(26, 153, 37);
+}
+.logo{
+	margin: 5px 0 0 10px;
+	height: 70px;
+	width: 70px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.name{
+	margin: 5px 0 0 25px;
+}

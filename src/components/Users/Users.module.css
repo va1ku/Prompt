@@ -1,0 +1,78 @@
+
+
+.wrapper {
+ 	display: flex;
+	width: 70%;
+	margin: 30px auto;
+	gap: 50px;
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	
+
+}
+
+.avatarDefault{
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+	background-color: rgb(80, 38, 22);
+}
+
+.avatar{
+	object-fit: cover;
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+}
+.name{
+	letter-spacing: 2px;
+	margin: 0 0 15px 0;
+}
+
+.but_follow{
+	margin: 10px 0;
+	width: 70px;
+	height: 20px;
+	background-color: rgb(7, 161, 7);
+	border-radius: 10px;
+	color: aliceblue;
+	letter-spacing: 3px;
+}
+.but_follow[disabled]{
+	background-color:rgb(77, 77, 87);
+}
+.but_unFollow[disabled]{
+	background-color:rgb(77, 77, 87);
+}
+.but_unFollow{
+	margin: 10px 0;
+	width: 85px;
+	height: 20px;
+	background-color: rgb(197, 21, 21);
+	border-radius: 10px;
+	color: aliceblue;
+	letter-spacing: 3px;
+}
+
+.avatar_followed{
+	text-align: center;
+}
+
+
+.nuvWrapper {
+	text-align: center;
+ }
+ 
+ .number{
+	 margin: 0 10px;
+	 background: none;
+ }
+ .active{
+	 font-weight: 800;
+ 
+ }
+
+ 

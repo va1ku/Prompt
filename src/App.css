@@ -1,0 +1,22 @@
+@import "_null";
+
+#root {
+	min-height: 100vh;
+}
+
+.app-wrapper {
+	width: 1200px;
+	min-height: 100vh;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: 100px 1fr 80px;
+	grid-template-columns: 2fr 8fr;
+	grid-template-areas:
+		"header header"
+		"sidebar main"
+		"footer footer";
+	grid-gap: 10px;
+}
+.app-wrapper-main {
+	grid-area: main;
+}

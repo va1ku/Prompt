@@ -1,0 +1,21 @@
+
+.ChatsItem{
+	display: flex;
+	margin: 0 0 20px 0;
+}
+
+.ChatsItem img{
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	margin: 0 10px 0 10px;
+}
+
+
+.chats_name{
+	padding: 2px 0 0 0;
+}
+
+.active{
+	color: black;
+}
