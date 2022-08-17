@@ -10,7 +10,7 @@ describe('profileStatus',()=>{
 })
 describe('switch switched',()=>{
 	it("switch switched",()=>{
-		const {getByRole,getByText} = render(<ProfileStatus status="text"/>)
+		const {getByRole,getByText} = render(<ProfileStatus status="text" isOwner={true}/>)
 		const text = getByText(/text/)
 		fireEvent.dblClick(text);
 		expect(getByRole('input')).toBeInTheDocument();

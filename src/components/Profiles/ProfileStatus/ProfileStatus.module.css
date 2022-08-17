@@ -1,27 +1,28 @@
 
 .statusWrapper{
+	width: auto;
 	margin: 0 0 30px 0;
 }
-
-.status{
-	overflow: hidden;
-	background-color: rgb(227, 235, 241);
-	min-width: 20%;
-	min-height: 20px;
-	
+.status {
+  width:auto;
 }
 
-.statusBlock{
-	width: 50%;
-}
 .changeStatusBlock{
 	width: auto;
 	height: 20px;
-	
 }
 
 .changeStatus{
 	height: 20px;
-	background-color: rgb(227, 235, 241);
+	
+	
+}
+.statusBlockBlur{
+	padding: 0 5px;
 
+}
+.statusBlockBlur:hover{
+	background-color: rgb(122, 108, 108);
+	border-radius: 5px;
+	
 }

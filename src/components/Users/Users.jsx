@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Users.module.css"
 import Paginator from "../Common/Paginator/Paginator";
+import avatar from "../../images/avatar.png"
 
 const Users = (props) => {
 	return (
@@ -19,7 +20,7 @@ const Users = (props) => {
 							<div className={styles.container}>
 								<div className={styles.avatar_followed}>
 									<NavLink to={"/profile/" + el.id}>
-										<img className={el.photos.large ? styles.avatar : styles.avatarDefault} src={el.photos.large} alt=""></img>
+										<img className={styles.avatar} src={el.photos.large || avatar} alt=""></img>
 									</NavLink>
 									<div className={styles.followed}>
 										{el.followed

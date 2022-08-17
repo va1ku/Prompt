@@ -7,9 +7,12 @@ const ProfileStatus = React.memo((props) => {
 	const [editMode, setEditMode] = useState(false);
 	const [status, statusUpdate] = useState(props.status);
 	const editModeToggle = () => {
-		setEditMode(!editMode)
-		if (editMode) {
-			props.updateStatus(status)
+		if(props.isOwner){
+			setEditMode(!editMode)
+			if (editMode) {
+				props.updateStatus(status)
+			}
+
 		}
 	}
 	const statusTextUpdate = (e) => {
@@ -23,11 +26,10 @@ const ProfileStatus = React.memo((props) => {
 		<div className={styles.statusWrapper}>
 
 			{!editMode &&
-				<div className={styles.statusBlock}>
-					<div onDoubleClick={editModeToggle} className={styles.status}>
+					<span onDoubleClick={editModeToggle} className={`${styles.statusBlock} ${props.isOwner ? styles.statusBlockBlur : null}`}>
 						{props.status}
-					</div>
-				</div>}
+					</span>
+				}
 
 
 			{editMode &&

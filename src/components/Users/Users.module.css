@@ -14,13 +14,6 @@
 
 }
 
-.avatarDefault{
-	height: 80px;
-	width: 80px;
-	border-radius: 50%;
-	background-color: rgb(80, 38, 22);
-}
-
 .avatar{
 	object-fit: cover;
 	height: 80px;

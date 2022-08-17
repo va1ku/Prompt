@@ -1,14 +1,20 @@
-import profilesAPI from "../api/profilesAPI";
+import profilesAPI from './../api/profilesAPI';
 
-const ADD_POST = "ADD_POST";
-const SET_PROFILE = "SET_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const DELETE_POST = "DELETE_POST"
+const ADD_POST = "profile/ADD_POST";
+const SET_PROFILE = "profile/SET_PROFILE";
+const SET_STATUS = "profile/SET_STATUS";
+const DELETE_POST = "profile/DELETE_POST"
+const PUSH_PHOTOS_SUCCESS = "profile/PUSH_PHOTOS_SUCCESS"
 
 
 const initializationState = {
-	posts: [	],
-	Profile: null,
+	posts: [],
+	Profile: {
+		photos: {
+			small: null,
+			large: null
+		}
+	},
 	status: "",
 };
 
@@ -28,13 +34,16 @@ const profiles_reducer = (state = initializationState, action) => {
 			};
 
 		case SET_PROFILE:
-			return {...state, Profile: action.profile};
+			return { ...state, Profile: action.profile };
 
 		case SET_STATUS:
-			return {...state, status: action.status};
+			return { ...state, status: action.status };
 
 		case DELETE_POST:
-			return {...state, posts: state.posts.filter((el)=> el.id !== action.id)}
+			return { ...state, posts: state.posts.filter((el) => el.id !== action.id) }
+
+		case PUSH_PHOTOS_SUCCESS:
+			return { ...state, Profile: { ...state.Profile, photos: action.photos } }
 
 		default:
 			return state
@@ -45,36 +54,39 @@ const profiles_reducer = (state = initializationState, action) => {
 
 
 export let AddPost = (post) => ({ type: ADD_POST, post });
-export let SetProfile = (profile) => ({type: SET_PROFILE, profile});
-export let SetStatus = (status) => ({type: SET_STATUS, status});
-export let DeletePost = (id) => ({type: DELETE_POST, id});
+export let SetProfile = (profile) => ({ type: SET_PROFILE, profile });
+export let SetStatus = (status) => ({ type: SET_STATUS, status });
+export let DeletePost = (id) => ({ type: DELETE_POST, id });
+let PushPhotoSuccess = (photos) => ({ type: PUSH_PHOTOS_SUCCESS, photos })
 
 
-export const profileLoading = (userId) => (dispatch) =>{
-	profilesAPI.profiles(userId)
-		.then((data) =>{
-			dispatch(SetProfile(data))
-			dispatch(getStatus(userId))
-		})
+export const profileLoading = (userId) => async (dispatch) => {
+	const data = await profilesAPI.profiles(userId)
+	dispatch(SetProfile(data))
+	dispatch(getStatus(userId))
+
 }
 
-export const getStatus = (userId) => (dispatch) =>{
-	profilesAPI.getStatus(userId)
-		.then((response) =>{
-			dispatch(SetStatus(response))
-		})
+export const getStatus = (userId) => async (dispatch) => {
+	const response = await profilesAPI.getStatus(userId)
+	dispatch(SetStatus(response))
 }
 
-export const updateStatus = (status) => (dispatch) =>{
-	profilesAPI.updateStatus(status)
-		.then((response) =>{
-			if(response.resultCode === 0){
-				dispatch(SetStatus(status))
-			}
-		})
+export const updateStatus = (status) => async (dispatch) => {
+	const response = await profilesAPI.updateStatus(status)
+	debugger
+	if (response.resultCode === 0) {
+		dispatch(SetStatus(response))
+	}
 }
 
-
+export const PushPhoto = (file) => async (dispatch) => {
+	const response = await profilesAPI.PushPhoto(file);
+	debugger
+	if (response.resultCode === 0) {
+		dispatch(PushPhotoSuccess(response.data.photos))
+	}
+}
 
 
 export default profiles_reducer;

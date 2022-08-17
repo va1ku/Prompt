@@ -10,8 +10,9 @@ const Profiles = (props) => {
 
 	return (
 		<main >
-			<ProfilesInfo Profile={props.Profile} />
+			<ProfilesInfo Profile={props.Profile} isOwner={props.isOwner} PushPhoto={props.PushPhoto}/>
 			<ProfileStatus 
+			isOwner={props.isOwner}
 			updateStatus={props.updateStatus} 
 			getStatus={props.getStatus} 
 			status={props.status}

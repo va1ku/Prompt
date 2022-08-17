@@ -10,12 +10,6 @@ const initialState = {
 	email: null,
 	fullName: null,
 	isAuth: false,
-	profile: {
-		photos: {
-			small: null,
-			large: null
-		}
-	},
 	LoginErrors: [],
 };
 
