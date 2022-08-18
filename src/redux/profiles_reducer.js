@@ -62,8 +62,8 @@ let PushPhotoSuccess = (photos) => ({ type: PUSH_PHOTOS_SUCCESS, photos })
 
 export const profileLoading = (userId) => async (dispatch) => {
 	const data = await profilesAPI.profiles(userId)
+	dispatch(getStatus(userId))	
 	dispatch(SetProfile(data))
-	dispatch(getStatus(userId))
 
 }
 
@@ -74,15 +74,13 @@ export const getStatus = (userId) => async (dispatch) => {
 
 export const updateStatus = (status) => async (dispatch) => {
 	const response = await profilesAPI.updateStatus(status)
-	debugger
 	if (response.resultCode === 0) {
-		dispatch(SetStatus(response))
+		dispatch(SetStatus(status))
 	}
 }
 
 export const PushPhoto = (file) => async (dispatch) => {
 	const response = await profilesAPI.PushPhoto(file);
-	debugger
 	if (response.resultCode === 0) {
 		dispatch(PushPhotoSuccess(response.data.photos))
 	}

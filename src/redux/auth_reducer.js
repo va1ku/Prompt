@@ -56,7 +56,6 @@ export const authorization = () => async (dispatch) => {
 	if (data.resultCode === 0) {
 		const { email, id, login, } = data.data;
 		const profile = await profilesAPI.profiles(id)
-		debugger
 		dispatch(SetProfile(profile));
 		dispatch(setUserData(id, email, login, true));
 	}
