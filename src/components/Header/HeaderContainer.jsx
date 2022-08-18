@@ -20,6 +20,6 @@ let mapStateToProps = (state) => ({
 	fullName: state.auth.fullName,
 	MainUserId: getMainUserId(state),
 	isRequest: state.auth.isRequest,
-	photos: state.profilePage.Profile.photos
+	photos: state.auth.Profile.photos
 })
 export default connect(mapStateToProps,{logout})(HeaderContainer);

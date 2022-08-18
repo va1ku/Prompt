@@ -46,12 +46,12 @@ const ProfilesInfo = ({ Profile, isOwner,PushPhoto }) => {
 								<ul>
 									<li>facebook: {Profile.contacts.facebook ? Profile.contacts.facebook : "not specified"}</li>
 									<li>github: {Profile.contacts.github ? Profile.contacts.github : "not specified"}</li>
-									<li>instagram:{Profile.contacts.instagram ? Profile.contacts.instagram : "не указанно"} </li>
-									<li>mainLink: {Profile.contacts.mainLink ? Profile.contacts.mainLink : "не указанно"}</li>
-									<li>twitter: {Profile.contacts.twitter ? Profile.contacts.twitter : "не указанно"}</li>
-									<li>vk: {Profile.contacts.vk ? Profile.contacts.vk : "не указанно"}</li>
-									<li>website: {Profile.contacts.website ? Profile.contacts.website : "не указанно"}</li>
-									<li>youtube: {Profile.contacts.youtube ? Profile.contacts.youtube : "не указанно"}</li>
+									<li>instagram:{Profile.contacts.instagram ? Profile.contacts.instagram : "not specified"} </li>
+									<li>mainLink: {Profile.contacts.mainLink ? Profile.contacts.mainLink : "not specified"}</li>
+									<li>twitter: {Profile.contacts.twitter ? Profile.contacts.twitter : "not specified"}</li>
+									<li>vk: {Profile.contacts.vk ? Profile.contacts.vk : "not specified"}</li>
+									<li>website: {Profile.contacts.website ? Profile.contacts.website : "not specified"}</li>
+									<li>youtube: {Profile.contacts.youtube ? Profile.contacts.youtube : "not specified"}</li>
 								</ul>
 							</div>
 							: null
