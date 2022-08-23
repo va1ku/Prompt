@@ -41,7 +41,7 @@ const ProfilesInfoForm = ({ setEditMode, Profile, pushToNewProfile, Errors }) =>
 					onChange={formik.handleChange}
 					onBlur={formik.handleBlur}
 				/>
-				{formik.errors.fullName || formik.touched.fullName ? <div className={classes.errors}>{formik.errors.fullName}</div> : null}
+				{formik.errors.fullName && formik.touched.fullName ? <div className={classes.errors}>{formik.errors.fullName}</div> : null}
 			</label>
 			<label> About Me:
 				<input type='text'
