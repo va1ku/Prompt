@@ -23,6 +23,10 @@ const profilesAPI = {
 			}
 		});
 		return response.data;
+	},
+	async PushProfile(profile){
+		const response = await instance.put(`profile`, profile);
+		return response.data;
 	}
 }
 	

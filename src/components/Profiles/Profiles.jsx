@@ -1,7 +1,6 @@
 import ProfilesInfo from "./ProfileInfo/ProfilesInfo";
 import NouPosts from "./NouPosts/NouPosts";
 import Post from "./Post/Post";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 
 const Profiles = (props) => {
@@ -10,13 +9,16 @@ const Profiles = (props) => {
 
 	return (
 		<main >
-			<ProfilesInfo Profile={props.Profile} isOwner={props.isOwner} PushPhoto={props.PushPhoto}/>
-			<ProfileStatus 
+			<ProfilesInfo 
+			Errors={props.Errors}
+			pushToNewProfile={props.pushToNewProfile}
+			Profile={props.Profile} 
 			isOwner={props.isOwner}
+			PushPhoto={props.PushPhoto}
 			updateStatus={props.updateStatus} 
 			getStatus={props.getStatus} 
 			status={props.status}
-			/>
+			 />
 			<NouPosts useUpdateText={props.UpdatePostText}
 				addPost={props.AddPost}
 				NouPostsText={props.NouPostsText}

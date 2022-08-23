@@ -5,6 +5,7 @@ const SET_PROFILE = "profile/SET_PROFILE";
 const SET_STATUS = "profile/SET_STATUS";
 const DELETE_POST = "profile/DELETE_POST"
 const PUSH_PHOTOS_SUCCESS = "profile/PUSH_PHOTOS_SUCCESS"
+const ADD_ERRORS_MESSAGE = "profile/ADD_ERRORS_MESSAGE"
 
 
 const initializationState = {
@@ -16,6 +17,7 @@ const initializationState = {
 		}
 	},
 	status: "",
+	Errors: null
 };
 
 const profiles_reducer = (state = initializationState, action) => {
@@ -45,6 +47,9 @@ const profiles_reducer = (state = initializationState, action) => {
 		case PUSH_PHOTOS_SUCCESS:
 			return { ...state, Profile: { ...state.Profile, photos: action.photos } }
 
+		case ADD_ERRORS_MESSAGE:
+			return { ...state, Errors: action.messages }
+
 		default:
 			return state
 
@@ -58,6 +63,7 @@ export let SetProfile = (profile) => ({ type: SET_PROFILE, profile });
 export let SetStatus = (status) => ({ type: SET_STATUS, status });
 export let DeletePost = (id) => ({ type: DELETE_POST, id });
 let PushPhotoSuccess = (photos) => ({ type: PUSH_PHOTOS_SUCCESS, photos })
+let AddErrorMessage = (messages) =>({type: ADD_ERRORS_MESSAGE, messages })
 
 
 export const profileLoading = (userId) => async (dispatch) => {
@@ -83,6 +89,17 @@ export const PushPhoto = (file) => async (dispatch) => {
 	const response = await profilesAPI.PushPhoto(file);
 	if (response.resultCode === 0) {
 		dispatch(PushPhotoSuccess(response.data.photos))
+	}
+}
+
+export const pushToNewProfile = (profile,formSubmit) => async (dispatch,getState) => {
+	const response = await profilesAPI.PushProfile(profile);
+	if (response.resultCode === 0) {
+		formSubmit()
+		const MainUserId = getState().auth.MainUserId
+		dispatch(profileLoading(MainUserId))
+	}else{
+		dispatch(AddErrorMessage(response.messages))
 	}
 }
 

@@ -1,0 +1,44 @@
+
+
+
+
+.form_wrapper{
+	padding: 10px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	background: rgb(251, 250, 250);
+	border-radius: 10px;
+	border: 1px solid #000;
+	box-shadow: 0 0 4px;
+}
+
+
+.form{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.contacts{
+	display: flex;
+	flex-direction: column;
+	gap: 10px
+}
+
+.text_area{
+	display: flex;
+	flex-direction: column;
+	resize: none;
+	width:30vw; 
+	height:10vh;
+	overflow: auto;
+}
+
+.errors{
+	border: 1px solid red;
+	padding: 5px;
+}
+.errors ul li{
+	margin: 0 0 5px 0;
+}

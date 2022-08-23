@@ -6,6 +6,7 @@ import { useParams,Navigate } from "react-router-dom";
 import { compose } from "redux";
 import {getNouPostsText, getPost, getProfile, getStateStatus } from "../../redux/profiles_selectors";
 import { getMainUserId } from "../../redux/auth_selectors";
+import { pushToNewProfile } from './../../redux/profiles_reducer';
 
 
 
@@ -58,10 +59,11 @@ const mapStateToProps = (state) => {
 		Profile: getProfile(state),
 		status: getStateStatus(state),
 		MainUserId: getMainUserId(state),
+		Errors: state.profilePage.Errors
 	}
 }
 
 
 export default compose(
-	connect(mapStateToProps, {AddPost,profileLoading,getStatus,updateStatus,PushPhoto}),
+	connect(mapStateToProps, {AddPost,profileLoading,getStatus,updateStatus,PushPhoto, pushToNewProfile}),
 )(TakeParams)

@@ -6,7 +6,7 @@ const Header = (props) =>{
 		<header className={styles.header}>
 				{props.isAuth 
 				? <div className={styles.wrapper} >
-						<img className={styles.logo} src={props.photos.small}></img>
+						<img className={styles.logo} src={props.photos.small} alt=""></img>
 					<div className={styles.name}>{props.fullName}</div>
 					<button onClick={props.logout}>Logout</button>
 				</div>
