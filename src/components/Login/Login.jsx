@@ -11,8 +11,8 @@ import { RequiredField } from "../../utils/validators/validators"
 
 const Login = (props) => {
 	let onSubmit = (values, action) => {
-		let { login, password, remember } = values;
-		props.login(login, password, remember)
+		let { login, password, remember, captcha} = values;
+		props.login(login, password, remember, captcha)
 		action.setSubmitting(false)
 	}
 	let Input = ({ field, ...props }) => {
@@ -32,7 +32,7 @@ const Login = (props) => {
 		<div className={classes.wrapper}>
 			<div className={classes.loginWrapper}>
 				<h1>Sign In </h1>
-				<Formik onSubmit={onSubmit} initialValues={{ login: '', password: '', remember: false }}>
+				<Formik onSubmit={onSubmit} initialValues={{ login: '', password: '', remember: false, captcha: ''}}>
 					{({touched,errors,handleChange, values,isSubmitting}) => (
 						<Form>
 							<h2>login:</h2>
@@ -60,6 +60,20 @@ const Login = (props) => {
 								onChange={handleChange}
 								component="input" />
 							<span style={{ margin: "0 10px" }}>remember me</span>
+
+							{props.captcha 
+							? <div>
+								<img src={props.captcha} alt="" />
+								<Field
+								className={`${classes.loginInput} ${touched.captcha && errors.captcha ? classes.errors : ""}`}
+								name='captcha' type="captcha"
+								onChange={handleChange}
+								value={values.captcha}
+								component={Input}
+								validate={RequiredField()} />
+							</div>
+							: null
+							}
 
 							<div className={classes.submitWrapper}>
 								<button type="submit" className={classes.SubmitButton} disabled={isSubmitting}>

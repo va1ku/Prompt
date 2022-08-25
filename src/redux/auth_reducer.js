@@ -4,6 +4,7 @@ import profilesAPI from "../api/profilesAPI";
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 const SET_LOGIN_ERRORS = 'auth/SET_LOGIN_ERRORS';
 const SET_PROFILE = 'auth/SET_PROFILE';
+const SET_CAPTCHA_SUCCESS = 'auth/SET_CAPTCHA_SUCCESS'
 
 
 
@@ -19,6 +20,7 @@ const initialState = {
 	fullName: null,
 	isAuth: false,
 	LoginErrors: [],
+	captcha: null //null because it is not always required
 };
 
 const auth_reducer = (state = initialState, action) => {
@@ -37,6 +39,9 @@ const auth_reducer = (state = initialState, action) => {
 		case SET_PROFILE:
 			return { ...state, Profile: action.profile };
 
+		case SET_CAPTCHA_SUCCESS:
+			return { ...state, captcha: action.captcha }
+
 		default:
 			return state
 
@@ -45,9 +50,10 @@ const auth_reducer = (state = initialState, action) => {
 
 
 
-let setUserData = (MainUserId, email, fullName, isAuth) => ({ type: SET_USER_DATA, data: { MainUserId, email, fullName, isAuth } });
+let setUserData = (MainUserId, email, fullName, isAuth, captcha) => ({ type: SET_USER_DATA, data: { MainUserId, email, fullName, isAuth, captcha } });
 let setLoginErrors = (messages) => ({ type: SET_LOGIN_ERRORS, messages });
 let SetProfile = (profile) => ({ type: SET_PROFILE, profile });
+let SetCaptchaSuccess = (captcha) => ({ type: SET_CAPTCHA_SUCCESS, captcha });
 
 
 
@@ -61,19 +67,29 @@ export const authorization = () => async (dispatch) => {
 	}
 }
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
-	const response = await authAPI.login(email, password, rememberMe)
+export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
+	const response = await authAPI.login(email, password, rememberMe, captcha)
 	if (response.resultCode === 0) {
 		dispatch(setLoginErrors(""))
 		dispatch(authorization())
-	} else { dispatch(setLoginErrors(response.messages)) }
+	} else {
+		if (response.resultCode === 10) {
+			dispatch(getCaptcha());
+		}
+		dispatch(setLoginErrors(response.messages))
+	}
 }
 
 export const logout = () => async (dispatch) => {
 	const response = await authAPI.logout()
 	if (response.resultCode === 0) {
-		dispatch(setUserData(null, null, null, false))
+		dispatch(setUserData(null, null, null, false, null))
 	}
+}
+
+export const getCaptcha = () => async (dispatch) => {
+	const response = await authAPI.getCaptcha()
+	dispatch(SetCaptchaSuccess(response.url))
 }
 
 
